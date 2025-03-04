@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12.JS基本语法</title>
+</head>
+<body>
+    <script>
+        var x;
+        let y = 5; //更安全
+        const PI = 3.14;
+        console.log(x, y, PI);
+        let name = 'INFORV';
+        console.log(name);
+        let empty_value = null;
+        console.log(empty_value);
+
+        let age = 18;
+        if(age > 18) {
+            console.log('已经成年');
+        }
+        else if(age == 18) {
+            console.log('刚刚成年');
+        }
+        else {
+            console.log('未成年');
+        }
+
+        console.log('FOR循环示例');
+        for (let i = 1; i <= 10; i++) {
+            if (i == 5) continue;
+            console.log(i);
+        }
+
+        console.log('WHILE循环示例');
+        let count = 1;
+        while (count <= 10) {
+            if (count == 5) break;
+            console.log(count);
+            count++;
+        }
+    </script>
+</body>
+</html>

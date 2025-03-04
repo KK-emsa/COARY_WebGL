@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.CSS导入方式</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <!--导入外部样式表-->
+    
+    <!--内部样式表，写在head里-->
+    <style>
+        p {
+            color: rgb(127, 163, 255);
+            font-size: 20px; /* 字体大小默认16px */
+        }
+    </style>
+</head>
+<body>
+    <!--优先级：内联样式 > 内部样式表 > 外部样式表（多用于重复使用相同样式）-->
+    
+    <h1 style="color: brown;">一级标题标签</h1>
+    <!--内联样式-->
+    
+    <p>此处文本应用了css格式</p>
+    <!--内部样式表-->
+
+    <h2>二级标题标签</h2>
+    <!--外部样式表-->
+</body>
+</html>

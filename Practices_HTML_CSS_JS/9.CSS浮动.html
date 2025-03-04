@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.CSS浮动</title>
+
+    <style>
+        .father {
+            background-color: aliceblue;
+            height: 150px;
+            overflow: hidden; /* 清除浮动 */
+        }
+        /* 清除浮动2（为元素选择器） */
+        /* 
+            .father::after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+        */
+        .leftson {
+            width: 100px;
+            height:100px;
+            background-color: rgb(165, 111, 156);
+            float: left;
+        }
+        .rightson {
+            width: 100px;
+            height:100px;
+            background-color: rgb(98, 98, 156);
+            float: right;
+        }
+    </style>
+</head>
+
+<!--
+    传统网页布局方式
+        1.标准流/普通流/文档流：块元素+行内元素按默认方式进行
+        2.浮动
+        3.定位
+        4.Flexbox（自适应布局）
+        5.Grid（自适应布局）
+-->
+
+<!--
+    浮动三大特性：
+        1.脱离标准流
+        2.一行显示，顶部对齐
+        3.具备行内块元素特性
+-->
+
+<body>
+    <div class="father">
+        <div class="leftson">左浮动</div>
+        <div class="rightson">右浮动</div>
+    </div>
+    <p>长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本长文本</p>
+</body>
+</html>
