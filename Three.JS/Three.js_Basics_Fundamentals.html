@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js_Basics_Fundamentals_旋转立方体</title>
+    <style>
+        /* 让整个页面充满窗口，并移除滚动条 */
+        html, body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        /* 让 Canvas 充满整个屏幕 */
+        canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="c"></canvas>
+
+    <script type="module">
+        // import * as THREE from 'three';
+        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@latest/build/three.module.js';
+
+        function main() {
+            // 获取画布
+            const canvas = document.querySelector('#c');
+
+            // 创建渲染器
+            const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
+            renderer.setSize(window.innerWidth, window.innerHeight); // 设置渲染器大小
+            document.body.appendChild(renderer.domElement);
+
+            // 创建场景
+            const scene = new THREE.Scene();
+
+            // 创建透视相机
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10);
+            camera.position.set(2, 2, 5);
+            camera.lookAt(0, 0, 0);
+            
+
+            // 创建几何体（立方体）
+            const geometry = new THREE.BoxGeometry(1, 1, 1);
+
+            // 创建函数
+            function makeInstance(geometry, color, x) {
+                const material = new THREE.MeshPhongMaterial({ color });
+                const cube = new THREE.Mesh(geometry, material);
+                cube.position.x = x;
+                cube.castShadow = true; // 允许投影
+                scene.add(cube);
+                return cube;
+            }
+
+            //创建三个立方体
+            const cubes = [
+                makeInstance(geometry, 0x44aa88,  0),  // 绿色
+                makeInstance(geometry, 0x8844aa, -2),  // 紫色
+                makeInstance(geometry, 0xaa8844,  2),  // 橙色
+            ];
+
+            // 添加平行光
+            const color = 0xFFFFFF;
+            const intensity = 3;
+            const light = new THREE.DirectionalLight(color, intensity);
+            light.position.set(-1, 2, 4);
+            scene.add(light);
+
+            // 让渲染器适应 Canvas 的显示尺寸（防止模糊和变形）
+            function resizeRendererToDisplaySize(renderer) {
+                const canvas = renderer.domElement;
+                const width = canvas.clientWidth;
+                const height = canvas.clientHeight;
+                const needResize = canvas.width !== width || canvas.height !== height;
+                if (needResize) {
+                    renderer.setSize(width, height, false);
+                }
+                return needResize;
+            }
+
+            // 渲染循环
+            function render(time) {
+                time *= 0.001; //换算成秒
+                if (resizeRendererToDisplaySize(renderer)) { // 调整渲染器和相机比例，防止变形
+                    const canvas = renderer.domElement;
+                    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+                    camera.updateProjectionMatrix();
+                }
+                cubes.forEach((cube, ndx) => {
+                    const speed = 1 + ndx * 0.1; // 每个立方体速度略有不同
+                    const rot = time * speed;
+                    cube.rotation.x = rot;
+                    cube.rotation.y = rot;
+                });
+                renderer.render(scene, camera); // 渲染场景
+                requestAnimationFrame(render); // 持续更新动画
+            }
+            requestAnimationFrame(render); // 启动渲染
+
+            // // 监听窗口大小变化，调整相机和渲染器
+            // window.addEventListener('resize', () => {
+            //     const width = window.innerWidth;
+            //     const height = window.innerHeight;
+            //     camera.aspect = width / height;
+            //     camera.updateProjectionMatrix();
+            //     renderer.setSize(width, height);
+            // });
+        }
+
+        main(); // 执行主函数
+    </script>
+</body>
+</html>

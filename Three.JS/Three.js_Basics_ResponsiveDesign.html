@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js_Basics_ResponsiveDesign_立方体 + 文字</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+        }
+
+        /* Three.js 画布容器 */
+        .canvas-container {
+            width: 100%;
+            height: 400px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <h1>在文本中嵌入 Three.js 立方体</h1>
+        <p>这是一个示例，展示如何让 Three.js 画布成为页面的一部分，而不是全屏显示。</p>
+        
+        <div class="canvas-container">
+            <canvas id="c"></canvas>
+        </div>
+
+        <p>立方体应该位于这段文字的中间。无论如何调整窗口大小，Three.js 画布都能正确缩放。</p>
+        <p>你可以尝试调整窗口大小，看看 3D 立方体是否能正确缩放。</p>
+    </div>
+
+    <!-- 引入外部 JavaScript 文件 -->
+    <script type="module" src="./js/script.js"></script>
+
+</body>
+</html>
